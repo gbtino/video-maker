@@ -4,7 +4,9 @@ const robots = {
 }
 
 async function start() {
-    const content = {}
+    const content = {
+        maxnumSenteces: 7
+    }
 
     content.serchTerm = askAdnReturnSerchTerm()
     content.prefix = askAdnReturnPrefix()
