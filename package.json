@@ -21,5 +21,8 @@
     "readline-sync": "^1.4.9",
     "sbd": "^1.0.15",
     "watson-developer-cloud": "^3.18.3"
+  },
+  "devDependencies": {
+    "ws": "3.3.2"
   }
 }
