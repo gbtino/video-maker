@@ -5,7 +5,7 @@ const robots = {
 
 async function start() {
     const content = {
-        maxnumSenteces: 7
+        maximumSentences: 7
     }
 
     content.serchTerm = askAdnReturnSerchTerm()
@@ -25,7 +25,7 @@ async function start() {
         return selectedPrefixText
     }
 
-    console.log(content)
+    console.log(JSON.stringify(content),null,4)
 }
 
 start()

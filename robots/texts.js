@@ -5,7 +5,7 @@ const sentenceBoundaryDetection = require('sbd')
 const watsonApiKey = require('../credentials/watson-nlu.json').apikey
 const NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1.js')
 
-const nlu = new NaturalLanguageUnderstandingV1({
+var nlu = new NaturalLanguageUnderstandingV1({
   iam_apikey: watsonApiKey,
   version: '2018-04-05',
   url: 'https://gateway.watsonplatform.net/natural-language-understanding/api/'
@@ -23,6 +23,7 @@ async function robot(content) {
       const wikipediaAlgorithm = algorithmiaAuthencticated.algo('web/WikipediaParser/0.1.2')
       const wikipediaResponde = await wikipediaAlgorithm.pipe(content.serchTerm)
       const wikipediaContent = wikipediaResponde.get()
+
       content.sourceContentOriginal = wikipediaContent.content
   }
 
@@ -55,7 +56,6 @@ async function robot(content) {
       content.sentences = []
     
       const sentences = sentenceBoundaryDetection.sentences(content.sourceContentSanitized)
-      
       sentences.forEach((sentence) => {
         content.sentences.push({
           text: sentence,
@@ -76,18 +76,18 @@ async function robot(content) {
     }
   }
 
-  async function fetchWatsonAndReturnKeywords(sentence) {
+  async function fetchWatsonAndReturnKeywords(sentence) { 
     return new Promise((resolve, reject) => {
       nlu.analyze({
-        text: sentence,
+        text: "Passando um texto qualquer para analise",
         features: {
           keywords: {}
         }
       }, (error, response) => {
         if (error) {
+          console.log('erroRR:', error)
           throw error
         }
-
         const keywords = response.keywords.map((keyword) => {
           return keyword.text
         })
