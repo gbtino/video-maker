@@ -79,7 +79,7 @@ async function robot(content) {
   async function fetchWatsonAndReturnKeywords(sentence) { 
     return new Promise((resolve, reject) => {
       nlu.analyze({
-        text: "Passando um texto qualquer para analise",
+        text: sentence,
         features: {
           keywords: {}
         }
